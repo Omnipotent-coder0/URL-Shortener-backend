@@ -52,6 +52,7 @@ class App {
 
     private initializeDatabaseConnection = async () => {
         try {
+            console.log("mongo url : ", this.MONGO_URL);
             await mongoose.connect(this.MONGO_URL).then(() => {
                 console.log(`Congratulations your application is successfully connected to the database !!`);
             })
