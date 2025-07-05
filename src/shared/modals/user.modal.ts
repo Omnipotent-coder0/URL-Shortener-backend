@@ -59,8 +59,7 @@ userSchema.pre("save",function(next){
 });
 
 userSchema.methods.getRole = function(){
-    if(this.role == UserRoles.SELLER) return UserRoles.SELLER;
-    else if(this.role == UserRoles.USER) return UserRoles.USER;
+    return this.role;
 }
 
 userSchema.methods.comparePassword = function(password: string) : boolean {

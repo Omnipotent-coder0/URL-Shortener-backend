@@ -6,7 +6,9 @@ import { PageNotFoundError } from './shared/utils/apiError';
 import cookieParser from 'cookie-parser';
 import { BASE_URL, DATABASE_URL } from './shared/utils/envVariables';
 import { UserModule } from './UserModule';
-import { checkAuth } from './shared/middlewares/auth.middleware';
+import { checkAuth } from './shared/middlewares/auth.middlewares';
+import { RecordModule } from './RecordModue';
+import { ShortURLModule } from './ShortURLModule';
 class App {
     public app: Application;
     private BASE_URL: string;
@@ -32,11 +34,13 @@ class App {
 
 
     private initializeRoutes = () => {
-        this.app.get(`${this.BASE_URL}/hello-world`, (req: Request, res: Response) => {
+        this.app.get(`${this.BASE_URL}/hello-world`, (res: Response) => {
             res.send("hello world");
         });
         this.app.use(`${this.BASE_URL}/auth`, new AuthModule().router);
         this.app.use(`${this.BASE_URL}/user`, checkAuth , new UserModule().router);
+        this.app.use(`${this.BASE_URL}/records`, checkAuth , new RecordModule().router);
+        this.app.use('/', new ShortURLModule().router);
     }
 
     private setErrorHandling = () => {
