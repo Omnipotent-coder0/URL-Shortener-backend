@@ -1,7 +1,7 @@
 {
-  "name": "e-comm-backend",
+  "name": "URL-shortener",
   "version": "1.0.0",
-  "description": "This is a E commerce project",
+  "description": "This is a URL-shortener project",
   "main": "./dist/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
