@@ -1,5 +1,5 @@
 {
-  "name": "URL-shortener",
+  "name": "url-shortener",
   "version": "1.0.0",
   "description": "This is a URL-shortener project",
   "main": "./dist/index.ts",
