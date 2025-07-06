@@ -9,6 +9,9 @@ import { UserModule } from './UserModule';
 import { checkAuth } from './shared/middlewares/auth.middlewares';
 import { RecordModule } from './RecordModue';
 import { ShortURLModule } from './ShortURLModule';
+import cors from "cors";
+
+
 class App {
     public app: Application;
     private BASE_URL: string;
@@ -26,6 +29,10 @@ class App {
         doSetup();
     }
     private initializeMiddlewares = () => {
+        this.app.use(cors({
+            origin : true,
+            credentials: true,
+        }))
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(cookieParser());
@@ -34,7 +41,7 @@ class App {
 
 
     private initializeRoutes = () => {
-        this.app.get(`${this.BASE_URL}/hello-world`, (res: Response) => {
+        this.app.get(`${this.BASE_URL}/hello-world`, (req:Request, res: Response) => {
             res.send("hello world");
         });
         this.app.use(`${this.BASE_URL}/auth`, new AuthModule().router);

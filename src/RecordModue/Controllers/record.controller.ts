@@ -22,7 +22,7 @@ export class RecordController{
     public createRecord = async (req: Request) => {
         const createRecordPayload = this.policy.getCreateRecordPayload(req);
         const createdRecord = await this.service.createRecord(createRecordPayload);
-        return new SuccessResponse(createdRecord);
+        return new SuccessResponse(createdRecord, "New Record Created Successfully !!", 201);
     };
 
     public getRecordById = async (req: Request) => {

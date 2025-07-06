@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "./envVariables";
-import { JWTOptions, setCookieObject} from "./functionObject";
+import { emptyCookieObject, JWTOptions, setCookieObject} from "./functionObject";
 import { Response } from "express";
 import { AuthorizationError, BadRequestError } from "./apiError";
 import { Counter } from "../modals/counterDocument.modal";
@@ -13,6 +13,11 @@ const generateJwt=(id : string|Buffer|object)=>{
 const setCookie = (res : Response, key:string, value: string)=>{
     res.cookie(key, value, setCookieObject);
     return;
+}
+
+const removeCookie=(res: Response, key:string)=>{
+  res.cookie(key, null, emptyCookieObject);
+  return;
 }
 
 const verifyJwtToken = (token: string)=>{
@@ -61,5 +66,6 @@ export {
     toUrlSafeBase64,
     fromUrlSafeBase64,
     getNextSequence,
+    removeCookie,
 }
 
