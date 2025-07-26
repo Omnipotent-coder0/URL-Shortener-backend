@@ -10,6 +10,8 @@ export class ShortURLModule{
         this.initializeRoutes();
     }
     private initializeRoutes = async()=>{
+        this.router.route("/")
+            .get(this.controller.welcomePage);
         this.router.route("/:shortURL")
             .get(this.controller.tempRedirect);
     }

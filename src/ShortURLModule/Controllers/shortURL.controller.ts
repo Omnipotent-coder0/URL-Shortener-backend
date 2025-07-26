@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { ShortURLModule } from "..";
 import { ShortURLPolicy } from "../Policies/shortURL.policy";
 import { ShortURLService } from "../Services/shortURL.service";
 import { ApiError } from "../../shared/utils/apiError";
+import path from "path";
 
 export class ShortURLController {
     private service: ShortURLService;
@@ -28,5 +28,9 @@ export class ShortURLController {
                 res.status(500).send({ message: "Something Went Wrong !" });
             }
         }
+    }
+
+    welcomePage = async(req: Request, res: Response)=>{
+        res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
     }
 }
